@@ -4,27 +4,25 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 
-public class ListActivity extends AppCompatActivity {
+public class ToDoListActivity extends AppCompatActivity {
 
     Button addButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list);
+        setContentView(R.layout.activity_todolist);
 
-        List list = new List();
-        ArrayList<Item> listToView = list.getList();
+        ToDoList list = new ToDoList();
+        ArrayList<Task> listToView = list.getList();
 
-        ListAdapter adapter = new ListAdapter(this,listToView);
+        ToDoListAdapter adapter = new ToDoListAdapter(this,listToView);
         ListView listView = (ListView) findViewById(R.id.list_view);
         listView.setAdapter(adapter);
 
@@ -34,10 +32,10 @@ public class ListActivity extends AppCompatActivity {
     // when clicking on the list item - takes you through to the further details
     public void getDetails(View listItem){
 
-        Item item = (Item) listItem.getTag();
+        Task task = (Task) listItem.getTag();
 
-        Intent intent = new Intent(this, ItemActivity.class);
-        intent.putExtra("item", item);
+        Intent intent = new Intent(this, TaskActivity.class);
+        intent.putExtra("task", task);
 
         startActivity(intent);
 
@@ -48,7 +46,7 @@ public class ListActivity extends AppCompatActivity {
 
         Log.d(getClass().toString(), "clicked add task btn" );
 
-        Intent intent = new Intent(this, AddItemActivity.class);
+        Intent intent = new Intent(this, AddTaskActivity.class);
 
         startActivity(intent);
     }
@@ -57,7 +55,7 @@ public class ListActivity extends AppCompatActivity {
 //    @Override
 //    public boolean onCreateOptionsMenu(Menu menu){
 //        MenuInflater menuInflater = getMenuInflater();
-//        menuInflater.inflate(R.menu.activity_list, menu);
+//        menuInflater.inflate(R.menu.activity_todolist, menu);
 //        return true;
 //    }
 }

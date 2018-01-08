@@ -6,14 +6,12 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
-public class ItemActivity extends AppCompatActivity {
+public class TaskActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_item);
+        setContentView(R.layout.activity_task);
 
         TextView title = findViewById(R.id.view_title);
         TextView details = findViewById(R.id.view_details);
@@ -22,13 +20,13 @@ public class ItemActivity extends AppCompatActivity {
         TextView date = findViewById(R.id.view_date);
 
         Intent intent = getIntent();
-        Item item = (Item) intent.getSerializableExtra("item");
+        Task thisTask = (Task) intent.getSerializableExtra("task");
 
-        title.setText(item.getName());
-        details.setText(item.getDetails());
-        category.setText(item.getCategory());
-        logo.setImageResource(item.getLogo());
-        date.setText(item.getDue().toString());
+        title.setText(thisTask.getName());
+        details.setText(thisTask.getDetails());
+        category.setText(thisTask.getCategory());
+        logo.setImageResource(thisTask.getLogo());
+        date.setText(thisTask.getDue().toString());
 
     }
 }

@@ -14,9 +14,9 @@ import java.util.*;
  * Created by annalanigan on 05/01/2018.
  */
 
-public class ListAdapter extends ArrayAdapter<Item> {
+public class ToDoListAdapter extends ArrayAdapter<Task> {
 
-    public ListAdapter(Context context, ArrayList<Item> list) {
+    public ToDoListAdapter(Context context, ArrayList<Task> list) {
         super(context, 0, list);
     }
 
@@ -24,23 +24,23 @@ public class ListAdapter extends ArrayAdapter<Item> {
     public View getView(int position, View listItemView, ViewGroup parent){
 
         if (listItemView == null){
-            listItemView = LayoutInflater.from(getContext()).inflate(R.layout.activity_list_item, parent, false);
+            listItemView = LayoutInflater.from(getContext()).inflate(R.layout.activity_todolist_item, parent, false);
         }
 
-        Item currentItem = getItem(position);
+        Task currentTask = getItem(position);
 
-        if (currentItem.getCompleted() == false) {
+        if (currentTask.getCompleted() == false) {
 
 //        TextView ranking = (TextView) listItemView.findViewById(R.id.rank);
-//        ranking.setText(currentItem.getRanking().toString());
+//        ranking.setText(currentTask.getRanking().toString());
 
             TextView title = (TextView) listItemView.findViewById(R.id.title_list);
-            title.setText(currentItem.getName());
+            title.setText(currentTask.getName());
 
             ImageView icon = (ImageView) listItemView.findViewById(R.id.icon);
-            icon.setImageResource(currentItem.getLogo());
+            icon.setImageResource(currentTask.getLogo());
 
-            listItemView.setTag(currentItem);
+            listItemView.setTag(currentTask);
         }
 
         return listItemView;

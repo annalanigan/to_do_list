@@ -3,25 +3,23 @@ package com.example.codeclan.todolist;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.Spinner;
 
 import java.util.ArrayList;
 
-public class AddItemActivity extends AppCompatActivity {
+public class AddTaskActivity extends AppCompatActivity {
 
     EditText titleText;
     EditText detailsText;
     EditText categoryChoice;
     EditText dateChoice;
-    ArrayList<Item> spinnerList;
+    ArrayList<Task> spinnerList;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_item);
+        setContentView(R.layout.activity_add_task);
 
         titleText = findViewById(R.id.title);
         detailsText = findViewById(R.id.details);

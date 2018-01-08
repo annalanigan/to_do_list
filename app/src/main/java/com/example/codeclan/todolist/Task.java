@@ -11,7 +11,7 @@ import java.util.Date;
  */
 
 @Entity
-public class Item implements Serializable {
+public class Task implements Serializable {
 
     @PrimaryKey
     private String name;
@@ -20,7 +20,7 @@ public class Item implements Serializable {
     private String category;
     private Date due;
 
-    public Item(String name, String details, String catName){
+    public Task(String name, String details, String catName){
         this.name = name;
         this.details = details;
         this.completed = false;
