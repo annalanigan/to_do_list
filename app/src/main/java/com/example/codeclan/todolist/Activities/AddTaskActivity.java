@@ -1,11 +1,16 @@
-package com.example.codeclan.todolist;
+package com.example.codeclan.todolist.Activities;
 
+import android.arch.persistence.room.Room;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
-import java.util.ArrayList;
+import com.example.codeclan.todolist.Db.Task;
+import com.example.codeclan.todolist.Db.TaskDao;
+import com.example.codeclan.todolist.Db.TaskDatabase;
+import com.example.codeclan.todolist.R;
 
 public class AddTaskActivity extends AppCompatActivity {
 
@@ -13,7 +18,7 @@ public class AddTaskActivity extends AppCompatActivity {
     EditText detailsText;
     EditText categoryChoice;
     EditText dateChoice;
-    ArrayList<Task> spinnerList;
+    TaskDatabase db;
 
 
     @Override
@@ -21,15 +26,13 @@ public class AddTaskActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_task);
 
+        db = Room.databaseBuilder(getApplicationContext(),
+                TaskDatabase.class, "task_list").build();
+
         titleText = findViewById(R.id.title);
         detailsText = findViewById(R.id.details);
-        dateChoice = findViewById(R.id.due_date);
+//        dateChoice = findViewById(R.id.due_date);
         categoryChoice = findViewById(R.id.add_category);
-
-//        spinnerList =  new DefaultCategories.getCategoryNames();
-//        // Not working anyway - but...
-//        // this will return an array list of the objects and the spinner needs an array list
-//        // of the Strings of the names?
 
     }
 
@@ -38,7 +41,12 @@ public class AddTaskActivity extends AppCompatActivity {
         String newDetails = detailsText.getText().toString();
         String newCategory = categoryChoice.getText().toString();
 
+        Task newTask = new Task(newTitle, newDetails, newCategory);
 
+        db.taskDao().addNewTask(newTask);
+
+        Intent intent = new Intent(this, ToDoListActivity.class);
+        startActivity(intent);
 
     }
 

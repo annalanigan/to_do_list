@@ -1,5 +1,6 @@
-package com.example.codeclan.todolist;
+package com.example.codeclan.todolist.Activities;
 
+import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,19 +9,34 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.example.codeclan.todolist.Db.Task;
+import com.example.codeclan.todolist.Db.TaskDatabase;
+import com.example.codeclan.todolist.R;
+import com.example.codeclan.todolist.List.ToDoList;
+import com.example.codeclan.todolist.List.ToDoListAdapter;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class ToDoListActivity extends AppCompatActivity {
 
     Button addButton;
+    TaskDatabase myDb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_todolist);
 
-        ToDoList list = new ToDoList();
-        ArrayList<Task> listToView = list.getList();
+//        ToDoList list = new ToDoList();
+//        ArrayList<Task> listToView = list.getList();
+
+        myDb = Room.databaseBuilder(getApplicationContext(),
+                TaskDatabase.class, "task_list").allowMainThreadQueries().build();
+
+        List<Task> list = myDb.taskDao().getListOfData();
+        ArrayList<Task> listToView = (ArrayList<Task>)list;
+
 
         ToDoListAdapter adapter = new ToDoListAdapter(this,listToView);
         ListView listView = (ListView) findViewById(R.id.list_view);

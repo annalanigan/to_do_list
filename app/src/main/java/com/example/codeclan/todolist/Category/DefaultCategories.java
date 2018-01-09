@@ -1,7 +1,7 @@
-package com.example.codeclan.todolist;
+package com.example.codeclan.todolist.Category;
 
-import android.content.Context;
-import android.widget.ArrayAdapter;
+import com.example.codeclan.todolist.Category.Category;
+import com.example.codeclan.todolist.R;
 
 import java.io.Serializable;
 import java.util.ArrayList;

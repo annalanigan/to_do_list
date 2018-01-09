@@ -1,5 +1,7 @@
 package com.example.codeclan.todolist;
 
+import com.example.codeclan.todolist.Db.Task;
+
 import org.junit.Before;
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package com.example.codeclan.todolist;
+package com.example.codeclan.todolist.Db;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
@@ -6,6 +6,7 @@ import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
+import android.arch.persistence.room.Update;
 
 import java.util.List;
 
@@ -16,14 +17,17 @@ import java.util.List;
 @Dao
 public interface TaskDao {
 
-    @Query("SELECT * FROM Task")
-    LiveData<List<Task>> getListOfData();
+    @Update
+    public void updateUsers(Task... tasks);
 
-    @Query("SELECT * FROM Task WHERE TaskId = :taskId")
-    LiveData<Task> getTaskById(String taskId);
+    @Query("SELECT * FROM task_list")
+    List<Task> getListOfData();
+
+    @Query("SELECT * FROM task_list WHERE id = :taskId")
+    Task getTaskById(String taskId);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    Long createNewTask();
+    void addNewTask(Task task);
 
     @Delete
     void deleteTask(Task oldTask);

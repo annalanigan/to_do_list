@@ -1,7 +1,12 @@
-package com.example.codeclan.todolist;
+package com.example.codeclan.todolist.List;
+
+import com.example.codeclan.todolist.Db.Task;
+import com.example.codeclan.todolist.Db.TaskDao;
+import com.example.codeclan.todolist.Db.TaskDatabase;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by annalanigan on 05/01/2018.
@@ -13,9 +18,6 @@ public class ToDoList implements Serializable {
 
     public ToDoList(){
         list = new ArrayList<Task>();
-        list.add(new Task("food shop", "Sainsburys", "shopping"));
-        list.add(new Task("buy lighbulb", "halogen and 40 watt", "shopping"));
-        list.add(new Task("build drawer unit", "kids bedroom", "home"));
     }
 
     public void addItem(Task task){

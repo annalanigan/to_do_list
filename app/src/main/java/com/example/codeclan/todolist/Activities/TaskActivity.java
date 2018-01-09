@@ -1,10 +1,13 @@
-package com.example.codeclan.todolist;
+package com.example.codeclan.todolist.Activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.codeclan.todolist.Db.Task;
+import com.example.codeclan.todolist.R;
 
 public class TaskActivity extends AppCompatActivity {
 
@@ -17,7 +20,7 @@ public class TaskActivity extends AppCompatActivity {
         TextView details = findViewById(R.id.view_details);
         TextView category = findViewById(R.id.view_category);
         ImageView logo = findViewById(R.id.view_logo);
-        TextView date = findViewById(R.id.view_date);
+//        TextView date = findViewById(R.id.view_date);
 
         Intent intent = getIntent();
         Task thisTask = (Task) intent.getSerializableExtra("task");
@@ -26,7 +29,7 @@ public class TaskActivity extends AppCompatActivity {
         details.setText(thisTask.getDetails());
         category.setText(thisTask.getCategory());
         logo.setImageResource(thisTask.getLogo());
-        date.setText(thisTask.getDue().toString());
+//        date.setText(thisTask.getDue().toString());
 
     }
 }

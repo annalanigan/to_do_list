@@ -1,7 +1,10 @@
-package com.example.codeclan.todolist;
+package com.example.codeclan.todolist.Db;
 
+import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+
+import com.example.codeclan.todolist.R;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -10,22 +13,43 @@ import java.util.Date;
  * Created by annalanigan on 05/01/2018.
  */
 
-@Entity
+@Entity(tableName = "task_list")
 public class Task implements Serializable {
 
-    @PrimaryKey
+    @PrimaryKey (autoGenerate = true)
+    private int id;
+
+    @ColumnInfo(name = "title")
     private String name;
+
+    @ColumnInfo(name = "details")
     private String details;
+
+    @ColumnInfo(name = "completed")
     private Boolean completed;
+
+    @ColumnInfo(name = "category")
     private String category;
-    private Date due;
+
+//    @ColumnInfo(name = "due")
+//    private Date due;
+
+    public Task() {}
 
     public Task(String name, String details, String catName){
         this.name = name;
         this.details = details;
         this.completed = false;
         this.category = catName;
-        this.due = new Date();
+//        this.due = new Date();
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -64,13 +88,13 @@ public class Task implements Serializable {
         this.category = category;
     }
 
-    public Date getDue() {
-        return due;
-    }
-
-    public void setDue(Date due) {
-        this.due = due;
-    }
+//    public Date getDue() {
+//        return due;
+//    }
+//
+//    public void setDue(Date due) {
+//        this.due = due;
+//    }
 
     public int getLogo() {
         int logoLocation = 0;

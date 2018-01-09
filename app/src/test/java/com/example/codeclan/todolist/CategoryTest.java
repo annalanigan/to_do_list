@@ -1,5 +1,8 @@
 package com.example.codeclan.todolist;
 
+import com.example.codeclan.todolist.Category.Category;
+import com.example.codeclan.todolist.Category.DefaultCategories;
+
 import org.junit.Before;
 import org.junit.Test;
 

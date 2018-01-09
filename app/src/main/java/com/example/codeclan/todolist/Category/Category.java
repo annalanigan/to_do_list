@@ -1,4 +1,4 @@
-package com.example.codeclan.todolist;
+package com.example.codeclan.todolist.Category;
 
 import java.io.Serializable;
 
